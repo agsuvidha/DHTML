@@ -1,0 +1,41 @@
+<html>
+<head>
+<script language="vbscript">
+sub xyz
+	dim a,num,x,y
+	a="suvidha"
+	num=len(a)
+	msgbox(num)
+	x=abc.value
+	if len(x) =0 then
+		msgbox("incorrect")
+	end if
+	y=pass.value
+	if not IsNumeric(y) then
+		msgbox "phone no should be numeric"
+	end if
+	
+end sub
+sub qwe
+	dim a
+	s=pass.value
+	a=instr(1,s,"@")
+	msgbox(a)
+	if a=0 then
+		msgbox("invalid address")
+	end if
+end sub
+</script>
+</head>
+<body>
+<h1>
+Welcome to web shoppe
+</h1>
+<pre>
+Login    <input type="text" name="abc">
+Password <input type="password" name="pass">
+<input type="button" value="Submit" onclick="xyz()">
+<input type="button" value="Calc" onclick="qwe()">
+</pre>
+</body>
+</html>

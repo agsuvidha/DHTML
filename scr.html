@@ -1,0 +1,67 @@
+<html>
+<head>
+<script language="vbscript">
+sub main()
+	select case course.SelectedIndex
+		case 0
+			call java
+		case 1
+			call javascript2
+		case 2	
+			call linux
+		case 3 
+			call oracle
+		case else
+			msgbox "invalid call"
+	end select
+end sub
+sub java
+	cr.value="Java"
+	dl.value="Programming language"
+end sub
+sub javascript2
+	cr.value="Javascript"
+	dl.value="Scripting language"
+end sub
+sub linux
+	cr.value="linux"
+	dl.value="Operating System"
+end sub
+sub oracle
+	cr.value="Oracle"
+	dl.value="RDBMS"
+end sub
+sub fun
+	dim str1,str2,rev
+	str1="Welcome"
+	str2="welcome"
+	rev=strcomp(str1,str2)
+	msgbox(rev)
+end sub
+sub fun2()
+	dim a
+	a=confirm("do u want to submit")
+	msgbox(a)
+end sub
+</script>
+</head>
+<body>
+<h1>
+Welcome
+</h1>
+<select name="course">
+<option>Java</option>
+<option>Java Script</option>
+<option>Linux</option>
+<option>Oracle</option>
+</select>
+<pre>
+Course <input type="text" name="cr">
+Detail <input type="text" name="dl">
+ASCII <input type="text" name="as">
+<input type="button" value="Submit" onclick="main()">
+<input type="button" value="Compare" onclick="fun()">
+<input type="button" value="Confirm" onclick="fun2()">
+</pre>
+</body>
+</html>

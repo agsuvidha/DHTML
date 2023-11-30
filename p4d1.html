@@ -1,0 +1,54 @@
+<html>
+ <head>
+ <title> Webshoppe </title>
+ <style type="text/css">
+ .plusclass{COLOR:green}
+ .minusclass{COLOR:red}
+ </style>
+ <script language="javascript">
+ function disp1()
+ {
+  if (toydesc.className=="plusclass")
+  {
+   spanid.innerText="Welcome to toy zone. You get stuffed toys ranging from $10 to $500 here. Feel free to give your feedback/suggestions.";   
+   toydesc.innerHTML="Toys" +
+                     "<ol>" +
+                     "<li> Stuffed </li>" +
+                     "<li> Electronic </li>" +
+                     "</ol>";
+   toydesc.className="minusclass";
+   toyimg.src="minus.bmp";
+  }
+  else
+  {
+   spanid.innerText="Welcome to Webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted.";
+   toydesc.className="plusclass";
+   toydesc.innerHTML="Toys";
+   toyimg.src="plus.bmp";
+  }
+ }
+ </script>
+ <body>
+ <h1 align="center" style="COLOR:rgb(100,100,0)">
+  Webshoppe
+ </h1>
+ <table>
+  <tr>
+  <td> <img id="toyimg" onclick=disp1() src="plus.bmp" style="CURSOR:hand"> <span id="toydesc" class="plusclass"> Toys </span> </td>
+  </tr>
+  <tr>
+  <td> <img src="plus.bmp"> Flowers </td>
+  </tr>
+<tr>
+  <td> <img src="plus.bmp"> Books </td>
+  </tr>
+<tr>
+  <td> <img src="plus.bmp"> Confectionery </td>
+  </tr> 
+ </table>
+ <span id="spanid" style="position:absolute ; left:230 ; top:120 ; width:200 ; height:10 ; font-size:20 ; background:yellow ; COLOR:red ; border:1px solid black">
+ Welcome to Webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted.
+ </body>
+</html>
+
+ 

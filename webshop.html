@@ -1,0 +1,103 @@
+<HTML>
+
+<HEAD>
+<TITLE>Living Title</TITLE>
+
+<STYLE>
+TABLE      {  font: 10pt "Comic Sans MS";color: black;  }
+#celSlide  {  letter-spacing: 10;color: cyan;  }
+</STYLE>
+
+<SCRIPT>
+
+<!----------------Global Variable Declarations----------->
+var sColor1="white";
+var sColor2="gray";
+var iColorLoop=0;
+var iCurrentCELL=0;
+var bAscending=true;
+<!------------------------------------------------------->
+
+document.onmousemove=change;
+document.onmouseout =hide;
+celColorChange=new Array(iCurrentCELL)
+
+function hide(){
+td.style.visibility='hidden';
+}
+
+function change(){
+td.style.visibility='visible'
+td.style.left=event.clientX
+td.style.top=event.clientY 
+}
+
+
+function cycleColors()
+{
+if (bAscending)
+    {
+	with(document.all)
+	celColorChange[iCurrentCELL].style.color=sColor2;
+	iCurrentCELL++;
+
+	if (iCurrentCELL>4)
+       {
+	    bAscending=false;
+	    iCurrentCELL=4;
+       }
+    }
+else
+    {
+	with(document.all)
+	celColorChange[iCurrentCELL].style.color=sColor1;
+   	iCurrentCELL--;
+   	if (iCurrentCELL==0)
+       {
+	    bAscending=true;
+	    changeColors();
+       }
+    }		
+}
+
+function changeColors()
+{
+switch (iColorLoop)
+   {
+   case 0:
+	sColor1="yellow";
+	sColor2="orange";
+	break;
+   case 1:
+	sColor1="hotpink";
+	sColor2="purple";
+	break;
+   case 2:
+	sColor1="aqua";
+	sColor2="blue";
+	break;
+   case 3:
+	sColor1="lightgreen";
+	sColor2="green";
+   }
+ iColorLoop++;
+ if (iColorLoop>3)
+     iColorLoop=0;
+}
+</SCRIPT>
+</HEAD>
+
+<BODY bgcolor=black onload="setInterval('cycleColors()',100)" >
+<TABLE id="td" style="position:absolute;visibility:hidden">
+<TR>
+<TD ID="celColorChange">Web</TD>
+<TD ID="celColorChange">S</TD>
+<TD ID="celColorChange">h</TD>
+<TD ID="celColorChange">op</TD>
+<TD ID="celColorChange">pe</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

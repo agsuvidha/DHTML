@@ -1,0 +1,42 @@
+<html>
+ <head>
+ <title> Webshoppe </title>
+ <style type="text/css">
+ .toymenu{position:absolute ; left:0 ; top:50px ; width:100px ; height:22px ; background:yellow}
+ .flowermenu{position:absolute ; left:100 ; top:50px ; width:100px ; height:22px ; background:yellow}
+ .bookmenu{position:absolute ; left:200 ; top:50px ; width:100px ; height:22px ; background:yellow}
+ .conmenu{position:absolute ; left:300 ; top:50px ; width:100px ; height:22px ; background:yellow}
+ .moremenu{position:absolute ; width:100px ; background:pink ; visibility:hidden ; top:32px}
+ </style>
+ <script language="javascript">
+ function toyin()
+ {
+  toydiv.style.visibility="visible";
+  toydiv.style.left=0;
+  toydiv.style.top=72;
+ }
+ function hidetoy1()
+ {
+  toydiv.style.visibility="hidden";
+ }
+ </script>
+ </head>
+ <body>  
+ <h1 align="center" style="COLOR:rgb(100,100,150)">
+  Webshoppe
+ </h1>
+ <span class="toymenu" onmouseover="toyin()">Toys</span>
+ <span class="flowermenu">Flowers</span>
+ <span class="bookmenu">Books</span>
+ <span class="conmenu">Confectionery</span>
+ <div id="toydiv" class="moremenu" onmouseout="hidetoy1()">Electronic<br>Stuffed</div>
+ </body>
+</html>
+
+
+
+
+
+  
+
+

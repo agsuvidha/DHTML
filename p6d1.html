@@ -1,0 +1,183 @@
+<html>
+ <head>
+  <title>Webshoppe</title>
+   <style type="text/css">
+    .plusclass{COLOR:green}
+    .minusclass{COLOR:red}
+    </style>
+    <script language="javascript">
+    var startsrc=null;
+    var endsrc=null;
+    var flag=0;
+    document.ondragstart=doDragStart;
+    document.onmousedown=doMouseDown;
+    document.onmousemove=doMouseMove;
+    document.onmouseup=doMouseUp;
+    function doMouseDown()
+    {
+     startsrc=event.srcElement;
+     if(startsrc.parentElement.tagName=='OL')
+     {
+      event.returnValue=false
+     }
+    }
+    function doDragStart()
+    {
+     if(startsrc.parentElement.tagName=='OL')
+     {
+      event.returnValue=false
+     }
+    }
+    function doMouseMove()
+    {
+     if(startsrc=null)
+     return;
+     if(startsrc.parentElement.tagName=='OL')
+     {
+      movelist.style.display="";
+      movelist.value=startsrc.innerText;
+      movelist.style.left=event.x;
+      movelist.style.top=event.y;
+      flag=1;
+     }
+    }
+    function doMouseUp()
+    {
+     endsrc=event.srcElement;
+     if(startsrc.parentElement.tagName=='OL')
+     {
+      if(flag==1 && (endsrc.id=='carthead' || endsrc.id=='cart'))
+      {
+       items=cart.innerHTML;
+       items=items + "<li>" + movelist.value + "</li>";
+       cart.innerHTML=items;
+       flag=0;
+      }
+      startsrc=null;
+      movelist.style.display="none";
+     }
+    }
+    function addcart()
+    {
+     flag=0;
+    }
+    function display1()
+    {
+     if(toydesc.className  =="plusclass")
+     {
+      toydesc.innerHTML="Toys" +  
+                                    "<ol>" +
+                                    "<li>Stuffed </li>" +
+                                    "<li> Electronic </li>" +
+                                    "</ol>";
+      toydesc.className="minusclass";
+      timg1.src ="minus.gif"
+      descid.innerText ="Welcome to toy zone. You get stuffed toys ranging from $10 to $500 here. Feel   free to give your feedback/suggestions";
+     }
+     else
+     {
+      toydesc.className= "plusclass";
+      toydesc.innerHTML="Toys";
+      timg1.src ="plus.gif";
+      descid.innerText="Welcome to webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted";
+     }
+    }
+   function disp2()
+   {
+    if(flowerdesc.className=="plusclass")
+    {
+     flowerdesc.innerHTML="Flowers" +
+                                     "<ol>" +
+                                    "<li>Rose </li>" +
+                                    "<li>Marie Gold </li>" +
+                                    "</ol>";
+      flowerdesc.className="minusclass";
+      flowerimg.src="minus.gif";
+      descid.innerText="Welcome to Flower section.Feel   free to give your feedback/suggestions.
+     }
+     else
+     {
+      flowerdesc.className= "plusclass";
+      flowerdesc.innerHTML="Toys";
+      flowerimg.src="plus.gif";
+      descid.innerText="Welcome to webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted.
+     }
+    }                                    
+    function disp3()
+    {
+     if(bookdesc.className=="plusclass")
+     {
+      bookdesc.innerHTML="Books" +  
+                                    "<ol>" +
+                                    "<li>Commerce </li>" +
+                                    "<li>Science </li>" +
+                                    "</ol>";
+      bookdesc.className="minusclass";
+      bookimg.src="minus.gif";
+      descid.innerText="Welcome to the lost world. You get books ranging from $10 to $500 here. Feel   free to give your feedback/suggestions.
+     }
+     else
+     {
+      bookdesc.className= "plusclass";
+      bookdesc.innerHTML="Toys";
+      bookimg.src="plus.gif";
+      descid.innerText="Welcome to webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted.
+     }
+    }    
+
+    function disp4()
+    {
+     if(condesc.className=="plusclass")
+     {
+      condesc.innerHTML="Confectionery" +  
+                                    "<ol>" +
+                                    "<li>Burger </li>" +
+                                    "<li>Pizza </li>" +
+                                    "</ol>";
+      condesc.className="minusclass";
+      conimg.src="minus.gif";
+      descid.innerText="Welcome to Confectionery zone. You get Yummy Stuff !! here. Feel   free to give your feedback/suggestions.
+     }
+     else
+     {
+      condesc.className= "plusclass";
+      condesc.innerHTML="Toys";
+      conimg.src="plus.gif";
+      descid.innerText="Welcome to webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted."
+     }
+    }
+    </script>
+  </head>       
+  <body style="BACKGROUND: pink">
+  <h1 align=center style="COLOR: rgb(100,100,0)">Webshoppe</h1>
+  <marquee style="COLOR: green"> A shop at your finger tips </marquee>
+  <table style="LEFT: 20px; POSITION: absolute; TOP: 120px">
+  <tbody>
+   <tr>
+     <td> <IMG id=timg1 onclick=display1() src="plus.gif" style="BACKGROUND: pink; CURSOR: hand" ><span id="toydesc" class="plusclass">Toys</span></td>
+   </tr>
+   <tr>
+     <td> <IMG id=flowerimg onclick=disp2() src="plus.gif" style="BACKGROUND: pink; CURSOR: hand" ><span class="plusclass" id="flowerdesc">Flowers</span></td>
+   </tr>    
+   <tr>
+     <td> <IMG id=bookimg onclick=disp3() src="plus.gif" style="BACKGROUND: pink; CURSOR: hand" ><span class="plusclass" id="bookdesc">Books</span></td>
+   </tr>
+   <tr>
+     <td> <IMG id=conimg onclick=disp4() src="plus.gif" style="BACKGROUND: pink; CURSOR: hand" ><span class="plusclass" id="condesc">Toys</span></td>
+   </tr>
+  </tbody>
+  </table>
+  <marquee id="descid" direction="up" scrollAmount=1 style="BACKGROUND: cyan; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: red; FONT-SIZE: 20px; HEIGHT: 100px; LEFT: 175px; POSITION: absolute; TOP: 150px; WIDTH: 200px">
+  Welcome to webshoppe. You can select any of our products by browsing through our web page. All types of credit cards are accepted.    
+  </marquee>
+  <input type='button' id="movelist" value="hello" style="DISPLAY: none; LEFT: 442px; POSITION: absolute; TOP: 239px; Z-INDEX: 100">
+  <br>
+  <div id='carthead' style="BACKGROUND: lightgreen; BORDER-BOTTOM: yellow solid; BORDER-LEFT: yellow solid; BORDER-RIGHT: yellow solid; BORDER-TOP: yellow solid; HEIGHT: 150px; LEFT: 400px; POSITION: absolute; TOP: 120px; WIDTH: 200px">Shopping Cart <br>
+   Drag from the list
+   <ul style="BACKGROUND: lightblue" id='cart' onmouseover="addcart()">
+   </ul>
+   </div>
+ </body>
+</html>
+
+ 

@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+.plusclass{color:green}
+.minusclass{color:red}
+</style>
+<script language="javascript">
+function display()
+{
+ if(tid.className="plusclass")
+ {
+   tid.innerHTML="Toys" +
+ "<br>&nbsp;<img id='t1img' src='plus.gif' style='CURSOR:hand' onclick='display1()'>" + 
+"<span id='t1' class='plusclass'> Electronic Toys</span>"; 
+tid.className ="minusclass"
+timg.src="minus.gif"
+ }
+else
+{
+ tid.innerHTML="Toys"
+ tid.className="plusclass"
+ timg.src="plus.gif"
+}
+}
+function display1()
+{
+ if(t1.className="plusclass")
+ {
+  t1.innerHTML="Electronics" +
+                              "<ol><li>Walkie Talkie </li>" +
+                              "<li> Racing Car </li> " +
+                              "</ol>";
+t1.className="minusclass"
+t1img.src="minus.gif"
+ }
+ else
+{
+ if(t1.className="minusclass")
+ {
+  t1.innerHTML="Electronics"
+  t1.className="plusclass"
+  t1img.src="plus.gif"
+ }
+}
+}
+</script>
+</head>
+<body bgcolor="lightgreen">
+<h1>
+<center>
+Webshoppe
+</center>
+</h1>
+<table>
+<tr>
+<td><img id=timg src="plus.gif" style="CURSOR:hand" onclick="display()">
+<span id="tid" class:"plusclass">Toys</span></td>
+</tr>
+<tr>
+<td><img id=fimg src="plus.gif" cursor:hand onclick="display()">
+<span id="fid" class:"plusclass">Flowers</span></td>
+</tr>
+<tr>
+<td><img id=bimg src="plus.gif" cursor:hand onclick="display()">
+<span id="bid" class:"plusclass">Books</span></td>
+</tr>
+<tr>
+<td><img id=cimg src="plus.gif" "cursor:hand"  onclick="display()">
+<span id="cid" class:"plusclass">Confectionery</span></td>
+</tr>
+</table>
+</body>
+</html>
+

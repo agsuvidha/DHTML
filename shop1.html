@@ -1,0 +1,297 @@
+<!--Lesson 6::Implementing Drag-and-Drop 
+			  PROBLEM STATEMENT 6.P.1
+			  -->
+<HTML>
+<HEAD>
+<style type="text/css">
+.expanded{color:#F47706}
+.notexpanded{color:brown}
+</style>
+<script language="jscript">
+
+
+var defaultText="Welcome to WebShoppe. You can " +
+				"select any of our products by browising trough " +
+				"our web page. All Types of credit cards are accepted";
+var startsrc=null;
+var endsrc=null;
+var flag=0;
+var text=null;
+var mid=null;
+var item=null;
+var x = 7;
+var y = 7;
+var x1 = 7;
+var y1 = 7;
+var h = 550;
+var w = 900;
+var check1 = 0;
+var check2=0;
+
+document.ondragstart=doDragStart;
+document.onmousedown=doMouseDown;
+document.onmousemove=doMouseMove;
+document.onmouseup=doMouseUp;
+
+
+function drift()
+{
+var z = document.all.zephyr.style;
+if (z.pixelTop <= 0 && check1 == 1)
+{
+	y = -1 * y ;
+	if (z.pixelLeft <= 0){ x = -1 * x ;}
+}
+else if (z.pixelLeft <= 0 && check1 == 1){ x = -1 * x ;}
+else if (z.pixelTop >= h)
+{
+	 y = -1 * y ; check1 = 1;
+	if (z.pixelLeft >= w){ x = -1 * x ;}
+}
+else if (z.pixelLeft >= w){ x = -1 * x ;}
+z.pixelLeft += x;
+z.pixelTop += y;
+drift1();
+}
+
+
+
+function drift1()
+{
+var z1 = document.all.zephyr1.style;
+if (z1.pixelTop <= 0 && check2 == 1)
+{
+	y1 = -1 * y1 ;
+	if (z1.pixelLeft <= 0){ x1 = -1 * x1 ;}
+}
+else if (z1.pixelLeft <= 0 && check2 == 1){ x1 = -1 * x1 ;}
+else if (z1.pixelTop >= h)
+{
+	 y1 = -1 * y1 ; check2 = 1;
+	if (z1.pixelLeft >= w){ x1 = -1 * x1 ;}
+}
+else if (z1.pixelLeft >= w){ x1 = -1 * x1 ;}
+z1.pixelLeft += x1;
+z1.pixelTop += y1;
+}
+
+
+function doMouseDown(){
+startsrc=event.srcElement;
+	if(startsrc.parentElement.tagName=='UL' || startsrc.parentElement.tagName=='OL'){
+	event.returnValue=false;
+	}
+}//End Of doMouseDown()
+//----------------------------------------------------------------------------------------------------------
+
+function doDragStart(){
+	if(startsrc.parentElement.tagName=='UL' || startsrc.parentElement.tagName=='OL'){
+	event.returnValue=false;
+	}
+}//End Of doDragStart()
+//----------------------------------------------------------------------------------------------------------
+
+function doMouseMove(){
+	
+	if(startsrc==null)
+	return;
+	
+	if(startsrc.parentElement.tagName=='UL' || startsrc.parentElement.tagName=='OL' ){
+	movelist.style.display="";
+	movelist.value=startsrc.innerText;
+	movelist.style.left=event.clientX;
+	movelist.style.top=event.clientY;
+	flag=1;
+	}
+}//End Of doMouseMove()
+//----------------------------------------------------------------------------------------------------------
+
+function doMouseUp(){
+endsrc=event.srcElement;
+	if(startsrc.parentElement.tagName=='UL'){
+	if(flag==1 && (endsrc.id=='carthead' || endsrc.id=='cart')){
+	item=cart.innerHTML;
+	item=item+"<li>" + movelist.value + "</li>";
+	cart.innerHTML=item;
+	flag=0;
+	}
+	}
+	text=startsrc.innerText;
+	
+	if(flag==1 && !(endsrc.id == 'carthead' || endsrc.id == 'cart' ) && endsrc.tagName != 'LI' ){
+	if(startsrc.parentElement.id=='cart')
+	{
+	 
+	for(i=0;i<cart.all.length;i++){
+		mid=cart.all(i);
+			if(text == mid.innerText)
+			{
+			cart.removeChild(mid);
+			text="";
+			}
+		}
+	flag=0;
+	}
+	}
+	startsrc=null;
+	movelist.style.display="none";
+}//End Of doMouseUp()
+//----------------------------------------------------------------------------------------------------------
+
+function addcart(){
+flag=0;
+}//End Of addcart()
+//----------------------------------------------------------------------------------------------------------
+function check(ide)
+{
+
+switch(ide.id)
+{
+case "toy":
+if(toydesc.className=="notexpanded" )
+{
+toy.src="minus.gif"
+descid.innerText="Welcome to Toy Zone. Over here you will be getting " +
+				 "stuffed toys and electronic toys ranging from $ 10 to $ 500." +
+				 "Feel Free to give your feedback/suggestions which are very valuable to us";
+toydesc.innerHTML ="&nbsp;&nbsp;Toys" +
+					"<ul>"+
+					"<li >Stuffed</li>" +
+					"<li>Electronics</li>" +
+					"</ul>"
+toydesc.className="expanded"
+toydesc.style.cursor="move"
+}
+else if(toydesc.className=="expanded")
+{
+toy.src="plus.gif"
+toydesc.innerHTML ="&nbsp;&nbsp;Toys"
+toydesc.className="notexpanded"
+descid.innerText =defaultText;
+toydesc.style.cursor=""
+}
+break;
+//--------------------------------------------------------------------------------------------------------
+case "con":
+if(condesc.className=="notexpanded")
+{
+con.src="minus.gif"
+descid.innerText="Welcome to Confectionery Zone. Over here you will be getting " +
+				 "Tasty And Hygenically cooked Confectionery ranging from $ 10 to $ 150." +
+				 "Feel Free to give your feedback/suggestions which are very valuable to us";
+condesc.innerHTML ="&nbsp;&nbsp;Confectionary" +
+					"<ul>"+
+					"<li>Cake </li>" +
+					"<li>Biscuit</li>" +
+					"<li>Pastry</li>" +
+					"</ul>"
+condesc.className="expanded"
+condesc.style.cursor="move"
+
+}
+else if(condesc.className=="expanded")
+{
+con.src ="plus.gif"
+condesc.innerHTML ="&nbsp;&nbsp;Confectionary"
+condesc.className="notexpanded"
+condesc.style.cursor=""
+descid.innerText=defaultText 
+}
+break;
+//--------------------------------------------------------------------------------------------------------
+case "flo":
+if(flodesc.className=="notexpanded")
+{
+flo.src="minus.gif"
+descid.innerText="Welcome to Flower Zone. Over here you will be getting " +
+				 "Beautiful And Fresh Flower ranging from $ 10 to $ 50." +
+				 "Feel Free to give your feedback/suggestions which are very valuable to us";
+flodesc.innerHTML ="&nbsp;&nbsp;Flowers" +
+					"<ul>"+
+					"<li>Lily's</li>" +
+					"<li>Roses</li>" +
+					"<li>Sunflower's</li>" +
+					"</ul>"
+flodesc.style.cursor="move"
+flodesc.className="expanded"
+}
+else if(flodesc.className=="expanded")
+{
+flo.src="plus.gif"
+flodesc.innerHTML ="&nbsp;&nbsp;Flowers"
+flodesc.className="notexpanded"
+flodesc.style.cursor=""
+descid.innerText=defaultText ;
+}
+break;
+//--------------------------------------------------------------------------------------------------------
+case "boo":
+if(boodesc.className=="notexpanded")
+{
+boo.src="minus.gif"
+descid.innerText="Welcome to Book Zone. Over here you will be getting " +
+				 "Old And New Books ranging from $ 100 to $ 500." +
+				 "Feel Free to give your feedback/suggestions which are very valuable to us";
+boodesc.innerHTML ="&nbsp;&nbsp;Books" +
+					"<ul>"+
+					"<li>Electro Mechanical Books </li>" +
+					"<li>Old Books</li>" +
+					"<li>New Books</li>" +
+					"</ul>"
+boodesc.style.cursor="move"
+boodesc.className="expanded"
+}
+else if(boodesc.className=="expanded")
+{
+boo.src="plus.gif"
+boodesc.innerHTML ="&nbsp;&nbsp;Books"
+boodesc.className="notexpanded"
+boodesc.style.cursor=""
+descid.innerText=defaultText ;
+}
+break;
+//--------------------------------------------------------------------------------------------------------
+}
+}
+</script>
+
+<TITLE>Web Shoppe</TITLE>
+</HEAD>
+<BODY bgcolor=white scroll=noscroll ONLOAD="setInterval('drift()',25)">
+<span style="BACKGROUND: white; HEIGHT: 145px; LEFT: 0px; POSITION: absolute; TOP: 0px; WIDTH: 999px; Z-INDEX: -2">&nbsp;</span>
+<IMG id=zephyr src="redrose.gif" style="LEFT: 5px; POSITION: absolute; TOP: 5px; Z-INDEX: -1" >
+<IMG id=zephyr1 src="redrose.gif" style="LEFT: 184px; POSITION: absolute; TOP: 14px; Z-INDEX: -1" >
+<FONT FACE="Bookman Old Style" color=white><H1 ALIGN=center><u> WebShoppe®</u></H1></FONT>
+<font color=lightgreen><marquee behavior="alternate"><b>Shop Till You Drop...!</b></marquee></font>
+<hr width="100%" size=4 color=red>
+<table cellspacing=25>
+<tr>
+<td><IMG id="toy" onclick="check(this)" align=absMiddle src="plus.gif" style="CURSOR: hand" ><span id="toydesc" class="notexpanded">&nbsp;&nbsp;Toys</span></td>
+</tr>
+<tr>
+<td><IMG id="boo" onclick="check(this)" align=absMiddle src="plus.gif" style="CURSOR: hand" ><span id="boodesc" class="notexpanded">&nbsp;&nbsp;Books</span></td>
+</tr>
+<tr>
+<td><IMG id="con" onclick="check(this)" align=absMiddle src="plus.gif" style="CURSOR: hand" ><span id="condesc" class="notexpanded">&nbsp;&nbsp;Confectionary</span></td>
+</tr>
+<tr>
+<td ><IMG id="flo" onclick="check(this)" align=absMiddle src="plus.gif" style="CURSOR: hand" ><span id="flodesc" class="notexpanded">&nbsp;&nbsp;Flowers</span></td>
+</tr>
+</table>
+<marquee id="descid" direction="up" behavior="alternate" scrollamount=1 style="BACKGROUND: cyan; BORDER-BOTTOM: black 1px solid;
+ BORDER-LEFT: black 1px solid; BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; COLOR: red; FONT-SIZE: 20px; HEIGHT: 250px; LEFT: 243px; POSITION: absolute; TOP: 131px; WIDTH: 212px">Welcome to WebShoppe. You can select any of our 
+									products by browising trough our web page. All 
+									Types of credit cards are accepted</marquee>
+<div id="carthead" style="BACKGROUND: none
+							 transparent scroll repeat 0% 0%; BORDER-BOTTOM: yellow solid; BORDER-LEFT: yellow solid; BORDER-RIGHT: yellow solid; BORDER-TOP: yellow solid; COLOR: peachpuff; HEIGHT: 273px; LEFT: 456px; POSITION: absolute; TOP: 126px; WIDTH: 186px">
+	Shopping Cart<br>Drag From This List
+	<ol style="BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: yellowgreen; CURSOR: hand" id="cart" onmouseover="addcart()">
+	</ol>
+</div>
+
+<input type='button' id="movelist" value="hello" style="DISPLAY:
+								 none; LEFT: 450px; POSITION: absolute; TOP: 250px; Z-INDEX: 100">          
+					
+<div id="info"></div>
+</BODY>
+</HTML>
